@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Baby ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Ultra Cute Styling */
+    :root {
+      --pink: #ffb6c1;
+      --pink-dark: #ff69b4;
+      --purple: #d8bfd8;
+      --blue: #add8e6;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #fff0f5 0%, #f5f0ff 100%);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    h1 {
+      color: var(--pink-dark);
+      margin-bottom: 15px;
+      font-size: 28px;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      color: #777;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .image-container {
+      height: 150px;
+      margin: 15px 0;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff0f5;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 15px;
+    }
+
+    .button {
+      background: linear-gradient(45deg, var(--pink), var(--purple));
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 10px 5px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+    }
+
+    .button:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(rgba(255,255,255,0.3), transparent);
+      transform: rotate(30deg);
+      transition: all 0.5s;
+      z-index: -1;
+    }
+
+    .button:hover::after {
+      left: 100%;
+    }
+
+    /* Screen transitions */
+    .screen {
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: absolute;
+      width: calc(100% - 60px);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+
+    .screen.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+      position: relative;
+    }
+
+    /* "No" button joke */
+    #noButton {
+      position: absolute;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      opacity: 0;
+      animation: confettiFall 3s ease-in-out forwards;
+      z-index: 1000;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatHeart 5s linear infinite;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      font-size: 16px;
+      animation: sparkleFloat 4s linear infinite;
+      opacity: 0;
+      z-index: 5;
+    }
+
+    @keyframes sparkleFloat {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translate(50px, -100px) rotate(180deg); opacity: 0; }
+    }
+
+    /* Special quote box */
+    .vow {
+      background: rgba(255, 182, 193, 0.2);
+      border-left: 4px solid var(--pink-dark);
+      padding: 15px;
+      margin: 25px 0;
+      border-radius: 0 15px 15px 0;
+      text-align: center;
+      font-style: italic;
+      position: relative;
+      backdrop-filter: blur(2px);
+    }
+
+    .vow::before {
+      content: '"';
+      font-size: 60px;
+      position: absolute;
+      left: 10px;
+      top: -20px;
+      color: rgba(255, 105, 180, 0.2);
+      font-family: serif;
+    }
+
+    .vow::after {
+      content: '"';
+      font-size: 60px;
+      position: absolute;
+      right: 10px;
+      bottom: -40px;
+      color: rgba(255, 105, 180, 0.2);
+      font-family: serif;
+    }
+
+    /* Calendar */
+    .calendar {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .calendar-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--pink-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .calendar-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      margin-bottom: 5px;
+      font-size: 12px;
+      color: var(--pink-dark);
+    }
+
+    .calendar-weekday {
+      text-align: center;
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .calendar-day {
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+
+    .calendar-day:hover {
+      background: var(--pink);
+      color: white;
+    }
+
+    .calendar-day.empty {
+      visibility: hidden;
+    }
+
+    .selected {
+      background: var(--pink-dark);
+      color: white;
+    }
+
+    /* Activity Buttons */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .activity-button {
+      background: rgba(255, 182, 193, 0.3);
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .activity-button:hover {
+      background: var(--pink);
+      transform: translateY(-3px);
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sparkles background -->
+  <div id="sparkles-container"></div>
+
+  <div class="container">
+    <!-- Screen 1 -->
+    <div id="screen1" class="screen active">
+      <div class="image-container">
+        <img src="C:\Users\asus\Desktop\Req\52471e5ee4d2c953127091efac41de23.gif" alt="Cute couple hugging">
+      </div>
+      <h1>To My Baby...</h1>
+      <p>Thank you for being the reason I smile every day. You're my everything! 🌟</p>
+      <button class="button" onclick="nextScreen('screen2')">Tell me more!</button>
+    </div>
+
+    <!-- Screen 2 -->
+    <div id="screen2" class="screen">
+      <div class="image-container">
+        <img src="C:\Users\asus\Desktop\Req\icegif-564.gif" alt="Couple blushing">
+      </div>
+      <div class="question">
+        <p>Do you know how much I love you?</p>
+        <div style="position: relative; height: 60px;">
+          <button class="button" onclick="nextScreen('screen3')">Yes!</button>
+          <button id="noButton" class="button" style="background: #ccc; margin-left: 10px;" 
+                  onmouseover="dodgeButton()">No</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3 -->
+    <div id="screen3" class="screen">
+      <div class="image-container">
+        <img src="C:\Users\asus\Desktop\Req\snuggle-in.gif" alt="Couple with heart eyes">
+      </div>
+      <div class="question">
+        <p>Will you keep being this amazing forever?</p>
+        <button class="button" onclick="nextScreen('screen4')">Of course!</button>
+      </div>
+    </div>
+
+    <!-- Screen 4 -->
+    <div id="screen4" class="screen">
+      <div class="image-container">
+        <img src="C:\Users\asus\Desktop\Req\milk-and-mocha-milk-mocha.gif" alt="Couple kissing">
+      </div>
+      <div class="question">
+        <p>Final question: Are you the cutest in the world?</p>
+        <button class="button" onclick="nextScreen('screen5')">YES!!!</button>
+      </div>
+    </div>
+
+    <!-- Screen 5 -->
+    <div id="screen5" class="screen">
+      <div class="image-container">
+        <img src="C:\Users\asus\Desktop\Req\bear-love.gif" alt="Happy couple">
+      </div>
+      <h1>I knew it! 😘</h1>
+      <p>You're my perfect match. Love you more than words can say!</p>
+      
+      <div class="vow">
+        "May the Lord punish me severely<br>if I allow anything but death<br>to separate us."
+      </div>
+      
+      <button class="button" onclick="nextScreen('screen6')">Let's plan a date! 💑</button>
+      <div id="hearts-container"></div>
+    </div>
+
+    <!-- Screen 6 - Date Picker -->
+    <div id="screen6" class="screen">
+      <div class="image-container">
+        <img src="C:\Users\asus\Desktop\Req\wanna-go-on-a-boba-date-bambi-boba.gif" alt="Couple with calendar">
+      </div>
+      <h2>Pick a Date 💖</h2>
+      <div class="calendar">
+        <div class="calendar-header">August 2025</div>
+        <div class="calendar-weekdays">
+          <div class="calendar-weekday">Sun</div>
+          <div class="calendar-weekday">Mon</div>
+          <div class="calendar-weekday">Tue</div>
+          <div class="calendar-weekday">Wed</div>
+          <div class="calendar-weekday">Thu</div>
+          <div class="calendar-weekday">Fri</div>
+          <div class="calendar-weekday">Sat</div>
+        </div>
+        <div class="calendar-days" id="calendarDays">
+          <!-- Calendar days will be generated by JavaScript -->
+        </div>
+      </div>
+      <button id="confirmDateBtn" class="button hidden" onclick="nextScreen('screen7')">Confirm Date</button>
+    </div>
+
+    <!-- Screen 7 - Activity Picker -->
+    <div id="screen7" class="screen">
+      <div class="image-container">
+        <img src="C:\Users\asus\Desktop\Req\milk-mocha-bear.gif" alt="Excited couple">
+      </div>
+      <h2>Where should we go? 🗺️</h2>
+      <div class="activity-grid">
+        <button class="activity-button" onclick="selectActivity('Museum', 'Art and history with you? Perfect! 🖼️')">Museum</button>
+        <button class="activity-button" onclick="selectActivity('Dinner', 'Romantic dinner for two? Yes please! 🍷')">Dinner</button>
+        <button class="activity-button" onclick="selectActivity('Massage', 'Relaxing spa day? You deserve it! 💆‍♀️')">Massage</button>
+        <button class="activity-button" onclick="selectActivity('Pangasinan', 'Beach getaway with you? Dream come true! 🌊')">Pangasinan</button>
+        <button class="activity-button" onclick="selectActivity('Samgyup', 'All-you-can-eat date? Let\'s go! 🥓')">Samgyup</button>
+        <button class="activity-button" onclick="selectActivity('DCC', 'Coffee and cuddles? My favorite! ☕')">DCC</button>
+      </div>
+    </div>
+
+    <!-- Screen 8 - Activity Response -->
+    <div id="screen8" class="screen">
+      <div class="image-container">
+        <img id="activityImage" src="https://i.imgur.com/9XQ7b4U.png" alt="Happy couple date">
+      </div>
+      <h2 id="activityTitle"></h2>
+      <p id="activityResponse"></p>
+      <button class="button" onclick="location.reload()">Start Over 💞</button>
+    </div>
+  </div>
+
+  <script>
+    // Create background sparkles
+    function createSparkles() {
+      const container = document.getElementById('sparkles-container');
+      const sparkles = ['✨', '🌟', '💫', '⚡️', '🌸'];
+      
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+          sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+          sparkle.style.left = Math.random() * 100 + 'vw';
+          sparkle.style.top = Math.random() * 100 + 'vh';
+          sparkle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+          sparkle.style.animationDelay = (Math.random() * 2) + 's';
+          container.appendChild(sparkle);
+          
+          setTimeout(() => {
+            sparkle.remove();
+          }, 5000);
+        }, i * 300);
+      }
+    }
+
+    // Initialize sparkles
+    createSparkles();
+    setInterval(createSparkles, 5000);
+
+    // Screen navigation
+    function nextScreen(screenId) {
+      const currentScreen = document.querySelector('.screen.active');
+      currentScreen.classList.remove('active');
+      document.getElementById(screenId).classList.add('active');
+      window.scrollTo(0, 0);
+      
+      // Generate calendar when screen6 is shown
+      if (screenId === 'screen6') {
+        generateCalendar(8, 2025); // August 2025
+      }
+    }
+
+    // "No" button joke
+    function dodgeButton() {
+      const noButton = document.getElementById('noButton');
+      const containerWidth = document.querySelector('.container').offsetWidth;
+      const newPosition = Math.random() * (containerWidth - 100);
+      
+      noButton.style.transform = `translateX(${newPosition}px) rotate(${Math.random() * 60 - 30}deg)`;
+      noButton.style.opacity = '0.7';
+      
+      setTimeout(() => {
+        noButton.style.opacity = '1';
+      }, 300);
+    }
+
+    // Celebration effects
+    function celebrate() {
+      nextScreen('screen5');
+      
+      // Confetti
+      for (let i = 0; i < 100; i++) {
+        createConfetti();
+      }
+      
+      // Floating hearts
+      const heartsContainer = document.getElementById('hearts-container');
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          createHeart(heartsContainer);
+        }, i * 200);
+      }
+    }
+
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = getRandomColor();
+      confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      confetti.style.animationDelay = (Math.random() * 2) + 's';
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => {
+        confetti.remove();
+      }, 3000);
+    }
+
+    function createHeart(container) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      container.appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    function getRandomColor() {
+      const colors = ['#ffb6c1', '#d8bfd8', '#add8e6', '#ffdead', '#98fb98'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // Date selection
+    let selectedDate = '';
+    function selectDate(element, date) {
+      document.querySelectorAll('.calendar-day').forEach(day => {
+        day.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      selectedDate = date;
+      document.getElementById('confirmDateBtn').classList.remove('hidden');
+    }
+
+    // Generate full calendar with all dates available
+    function generateCalendar(month, year) {
+      const calendarDays = document.getElementById('calendarDays');
+      calendarDays.innerHTML = '';
+      
+      // Get first day of month and total days
+      const firstDay = new Date(year, month - 1, 1).getDay();
+      const daysInMonth = new Date(year, month, 0).getDate();
+      
+      // Add empty cells for days before the first day of the month
+      for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day empty';
+        calendarDays.appendChild(emptyDay);
+      }
+      
+      // Add days of the month
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        dayElement.textContent = day;
+        
+        // Make all days selectable
+        dayElement.onclick = function() {
+          const monthNames = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"];
+          selectDate(this, `${monthNames[month-1]} ${day}, ${year}`);
+        };
+        
+        calendarDays.appendChild(dayElement);
+      }
+    }
+
+    // Activity selection
+    const activityImages = {
+      'Museum': '34376d7c3573d718f7b8135456975a36.gif',
+      'Dinner': 'date-night.gif',
+      'Massage': 'bubududu-massage.gif',
+      'Pangasinan': 'Beaches-in-Pangasinan-768x432.png',
+      'Samgyup': 'source.gif',
+      'DCC': '59fbf2e56efe7cf3e2ab3fa8c241fc49.gif'
+    };
+
+    function selectActivity(activity, response) {
+      document.getElementById('activityImage').src = activityImages[activity] || 'https://i.imgur.com/9XQ7b4U.png';
+      document.getElementById('activityTitle').textContent = `${activity} on ${selectedDate}!`;
+      document.getElementById('activityResponse').textContent = response;
+      nextScreen('screen8');
+      
+      // Extra celebration
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          createConfetti();
+        }, i * 100);
+      }
+    }
+  </script>
+</body>
+</html>
